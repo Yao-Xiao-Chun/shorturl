@@ -3,7 +3,7 @@ syntax = "v1"
 info (
 	title: // TODO: add title
 	desc: // TODO: add description
-	author: ""
+	author: "GH"
 	email: ""
 )
 

@@ -20,11 +20,11 @@ func main() {
 	var c config.Config
 	conf.MustLoad(*configFile, &c)
 
-	ctx := svc.NewServiceContext(c)
-	server := rest.MustNewServer(c.RestConf)
+	ctx := svc.NewServiceContext(c)          //建立一个新的上下文
+	server := rest.MustNewServer(c.RestConf) //增加新的配置服务
 	defer server.Stop()
 
-	handler.RegisterHandlers(server, ctx)
+	handler.RegisterHandlers(server, ctx) //服务启动 注册handle
 
 	fmt.Printf("Starting server at %s:%d...\n", c.Host, c.Port)
 	server.Start()
