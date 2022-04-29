@@ -26,8 +26,17 @@ type (
 		Shorten string `json:"shorten"`
 	}
 )
-
+//设置路由前
+@server(
+	prefix:api/v1
+	middleware:AuthMiddleware //中间件
+	group:v1
+)
 service shorturl-api {
+	@doc(
+		summary: "短连接转换代码"
+	)
+	
 	@server(
 		handler: ShortenHandler
 	)

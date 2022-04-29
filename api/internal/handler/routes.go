@@ -4,6 +4,7 @@ package handler
 import (
 	"net/http"
 
+	v1 "shorturl/api/internal/handler/v1"
 	"shorturl/api/internal/svc"
 
 	"github.com/zeromicro/go-zero/rest"
@@ -11,17 +12,21 @@ import (
 
 func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 	server.AddRoutes(
-		[]rest.Route{
-			{
-				Method:  http.MethodGet,
-				Path:    "/shorten",
-				Handler: ShortenHandler(serverCtx),
-			},
-			{
-				Method:  http.MethodGet,
-				Path:    "/expand",
-				Handler: ExpandHandler(serverCtx),
-			},
-		},
+		rest.WithMiddlewares(
+			[]rest.Middleware{serverCtx.AuthMiddleware.Handle},
+			[]rest.Route{
+				{
+					Method:  http.MethodGet,
+					Path:    "/shorten",
+					Handler: v1.ShortenHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodGet,
+					Path:    "/expand",
+					Handler: v1.ExpandHandler(serverCtx),
+				},
+			}...,
+		),
+		rest.WithPrefix("/api/v1"),
 	)
 }
