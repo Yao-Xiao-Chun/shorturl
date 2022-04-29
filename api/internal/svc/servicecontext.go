@@ -1,7 +1,7 @@
 package svc
 
 import (
-	"go-zero/vendor/github.com/zeromicro/go-zero/rest"
+	"github.com/zeromicro/go-zero/rest"
 	"shorturl/api/internal/config"
 	"shorturl/api/internal/middleware"
 	"shorturl/rpc/transform/transformer"
@@ -15,7 +15,7 @@ type ServiceContext struct {
 	AuthMiddleware rest.Middleware
 }
 
-//传递服务依赖
+// NewServiceContext 传递服务依赖
 func NewServiceContext(c config.Config) *ServiceContext {
 	return &ServiceContext{
 		Config:         c,

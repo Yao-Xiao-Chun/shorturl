@@ -2,7 +2,7 @@ package middleware
 
 import "net/http"
 
-//中间件
+// AuthMiddleware 中间件
 type AuthMiddleware struct {
 }
 
