@@ -1,11 +1,10 @@
 Name: shorturl-api
 Host: 0.0.0.0
 Port: 8888
-Transform:
+Transformer:
   Etcd:
     Hosts:
       - localhost:2379
-      Key:transform.rpc
-Mysql:
-  dataSource:
+    Key: transform.rpc
+
  
